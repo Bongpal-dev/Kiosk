@@ -1,1 +1,3 @@
-Hello
+fun main(){
+    println("Hello")
+}
