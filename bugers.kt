@@ -1,7 +1,13 @@
 class Bugers : Menu() {
+    //버거 앞에 있는 숫자 입력받는 변수
     var bugers = 0
+
+
+    //버거 종류을 나열한 후 순서대로 가격을 나열
     var bugerorder = arrayOf("ShackBurger", "SmokeShack", "Shroom Burger", "Shack Stack", "Hamburger", "8400", "10600", "10000", "14800", "6800")
 
+
+    //콘크리트 메뉴를 출력하고 선택받음과 동시에 총 주문내역과 가격을 출력하는 함수
     fun BugMenu() {
         println(
             """1. ShackBurger   | W 8.4 | 비프 패티와 함께 토마토, 양상추, 쉑소스가 토핑된 치즈버거
@@ -12,6 +18,8 @@ class Bugers : Menu() {
 0. 뒤로가기      | 뒤로가기
         """.trimIndent()
         )
+
+
         //주문받는 코드(예외처리함)
         while (true) {
             try {
@@ -26,10 +34,13 @@ class Bugers : Menu() {
                 println("다시 입력하세요")
             }
         }
+
+
         //돌아가기를 눌렀을 때 메인으로 돌아가고 주문을 했을 경우 주문내역에 추가하고 주문내역을 보여주는 코드
         if (bugers == 0) {
             return menu()
-        } else {
+        }
+        else {
             println(
                 """주문내역에 추가하시겠습니까?
 네[1], 아니요[2]

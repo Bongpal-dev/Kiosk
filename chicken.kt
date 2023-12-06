@@ -41,6 +41,9 @@ class Chicken : Menu() {
                         pay += chickenorder[chicken + 2].toInt()
                         println("총 가격 ${pay}")
                         break
+                    } else if (check == 2) {
+                        println("다시 선택해주세요")
+                        break
                     } else {
                         println("정확하게 입력해주세요")
                     }
