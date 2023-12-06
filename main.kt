@@ -5,10 +5,11 @@ fun main() {
     var custard = Custard()
     var concretes = Concretes()
     var drinks = Drinks()
+    var payment = Payment()
 
     while (true) {
         menu.menu()
-        var list = menu.A
+        var list = menu.menuNumber
         println(list)
 
         if (list == 1) {
@@ -21,6 +22,9 @@ fun main() {
             concretes.ConMenu()
         } else if (list == 5) {
             drinks.DrkMenu()
+        }else if (list == 6){
+            payment.payment()
+            break
         } else {
             println("프로그램을 종료합니다")
             break

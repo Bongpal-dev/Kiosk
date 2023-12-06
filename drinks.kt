@@ -52,11 +52,11 @@ class Drinks : Menu(){
                 try {
                     check = readLine()!!.toInt()
                     if (check == 1) {
-                        orderlist = orderlist.plus(drinksorder[drinks - 1])
+                        OrderList.orderlist = OrderList.orderlist.plus(drinksorder[drinks - 1])
                         println("주문내역")
-                        println(orderlist.contentToString())
-                        pay += drinksorder[drinks + 5].toInt()
-                        println("총 가격 ${pay}")
+                        println(OrderList.orderlist.contentToString())
+                        Price.price += drinksorder[drinks + 5].toInt()
+                        println("총 가격 ${Price.price}")
                         break
                     } else if (check == 2) {
                         println("다시 선택해주세요")

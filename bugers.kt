@@ -50,11 +50,11 @@ class Bugers : Menu() {
                 try {
                     check = readLine()!!.toInt()
                     if (check == 1) {
-                        orderlist = orderlist.plus(bugerorder[bugers - 1])
+                        OrderList.orderlist = OrderList.orderlist.plus(bugerorder[bugers - 1])
                         println("주문내역")
-                        println(orderlist.contentToString())
-                        pay += bugerorder[bugers + 4].toInt()
-                        println("총 가격 ${pay}")
+                        println(OrderList.orderlist.contentToString())
+                        Price.price += bugerorder[bugers + 4].toInt()
+                        println("총 가격 ${Price.price}")
                         break
                     } else if (check == 2) {
                         println("다시 선택해주세요")
