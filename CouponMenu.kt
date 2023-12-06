@@ -1,0 +1,4 @@
+package kiosk
+class CouponMenu {
+
+}

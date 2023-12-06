@@ -1,18 +1,22 @@
+package kiosk
+
+import kiosk.DataType.Menu
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import kotlin.NumberFormatException
 
-class Order {
+class OrderMenu {
     var nowCart = mutableListOf<Menu>()
 
     fun orderCheck() {
+        // 현재시간과 은행 점검시간
         val nowTime = LocalDateTime.now()
         val bankCheck = (LocalDateTime.of(LocalDate.now(), LocalTime.of(22, 0)) ..LocalDateTime.of(LocalDate.now(), LocalTime.of(22, 20)))
-        var totalPrice = 0
 
-        nowCart.forEach{totalPrice += it.price}
+        // 결제시 총 금액 안내용
+        var totalPrice = nowCart.sumOf { it.price }
 
 
         orderLoop@ while (true) {
@@ -35,18 +39,13 @@ class Order {
                 continue
             }
 
+
             when (orderYesOrNo) {
                 1 -> {
                     if (nowTime !in bankCheck) {
                         if (totalPrice > money) {
                             println("\n잔액이 부족합니다.")
-                            println(
-                                "\n현재 잔액 : ￦ ${priceConvert(money)}     부족 금액 : ￦ ${
-                                    priceConvert(
-                                        totalPrice - money
-                                    )
-                                }\n"
-                            )
+                            println("\n현재 잔액 : ￦ ${priceConvert(money)}     부족 금액 : ￦ ${priceConvert(totalPrice - money)}\n")
                             Thread.sleep(2_000)
                             continue
                         } else {
@@ -54,8 +53,8 @@ class Order {
                             print("\n결제가 완료됐습니다.")
                             println(" (${nowTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))})")
                             println("\n현재 잔액 : ￦ ${priceConvert(money)}\n")
+                            standByOrder += nowCart.toList()
                             nowCart.clear()
-                            orderCount++
                             Thread.sleep(2_000)
                             break
                         }

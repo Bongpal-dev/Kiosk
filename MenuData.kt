@@ -1,3 +1,7 @@
+package kiosk
+
+import kiosk.DataType.Menu
+
 class MenuData {
     val bugers: List<Menu> = listOf(
         Menu("ShackBurger", 84, "비프 패티와 함께 토마토, 양상추, 쉑소스가 토핑된 치즈버거"),

@@ -1,6 +1,9 @@
+package kiosk
+
+import kiosk.DataType.Menu
 import java.lang.NumberFormatException
 
-class MenuSelect  {
+class SelectMenu  {
 
     fun addOrder (menu: List<Menu>) {
 
@@ -56,7 +59,7 @@ class MenuSelect  {
 
                         1 -> {
                             println("${menu[orderSelector - 1].name}가 장바구니에 추가되었습니다.\n")    // 예 선택시 해당 item이 추가됐다는 메세지를 출력
-                            order.nowCart += menu[orderSelector - 1]    // 전역변수에 있는 현재 목록에 해당 값 (Menu타입)을 추가
+                            orderMenu.nowCart += menu[orderSelector - 1]    // 전역변수에 있는 현재 목록에 해당 값 (Menu타입)을 추가
                             Thread.sleep(1500L)
                             break@addOrderLoop // 메뉴 화면으로 돌아감
                         }
