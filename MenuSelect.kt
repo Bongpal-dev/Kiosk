@@ -1,8 +1,6 @@
 import java.lang.NumberFormatException
-import kotlin.text.StringBuilder
 
-class MenuSelect () {
-
+class MenuSelect  {
 
     fun addOrder (menu: List<Menu>) {
 
@@ -12,8 +10,7 @@ class MenuSelect () {
 
             println("==========================================================================================")
             for (i in menu) {
-                var menuPrice = StringBuilder("${i.price / 100}")
-                println("${menu.indexOf(i) + 1}. ${i.name} - ￦ ${menuPrice.insert(menuPrice.length - 1, ",")}")
+                println("${menu.indexOf(i) + 1}. ${i.name} - ￦ ${priceConvert(i.price)}")
                 println("   ${i.explain}\n")
             }
             println("==========================================================================================")
@@ -38,10 +35,8 @@ class MenuSelect () {
 
             } else {      // 메뉴에 있는 index가 입력되면 (해당번호 - 1)값으로 메뉴들을 출력 (인덱스 번호는 입력 숫자보다 1 작기때문에)
 
-                var pickMenuPrice = StringBuilder("${menu[orderSelector - 1].price / 100}")
-
                 println("\n==========================================================================================")
-                println("   ${menu[orderSelector - 1].name} - ￦ ${pickMenuPrice.insert(pickMenuPrice.length - 1, ",")}")
+                println("   ${menu[orderSelector - 1].name} - ￦ ${priceConvert(menu[orderSelector - 1].price)}")
                 println("   ${menu[orderSelector - 1].explain}")
                 println("==========================================================================================\n")
                 println("이 메뉴를 장바구니에 추가하시겠습니까?")

@@ -1,13 +1,18 @@
 ﻿import java.lang.NumberFormatException
+import kotlin.concurrent.timer
 
 val order = Order() //
-
-var money = 50000
+var orderCount = 0
+var money = 500
 
 
 fun main() {
     val menuData = MenuData()   // 메뉴 데이터를 가지고 있는 클래스 인스턴스
     val menuSelect = MenuSelect() // 메뉴를 dispaly하고 선택하는 클래스 인스턴스
+
+    timer(daemon = true, initialDelay = 100L, period = 5000L) {
+            println("(주문 대기 : ${orderCount}명)")
+    }
 
     while (true) {               // 메뉴 반복
         var menuSelector: Int
@@ -77,8 +82,14 @@ fun main() {
                 else -> System.err.println("메뉴를 선택해주세요.")
             }
         }
+
     }
+
 
     println("프로그램을 종료합니다.")
 
+}
+
+fun priceConvert (p: Int): String {
+    return "${p / 10}.${p % 10}"
 }
