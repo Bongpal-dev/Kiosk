@@ -1,6 +1,8 @@
 class Chicken : Menu() {
     var chicken = 0
     var chickenorder = arrayOf("Hot Chicken", "Chicken Shack", "Chick'n Bites", "9500", "8000", "5900")
+
+
     fun ChicMenu() {
         println(
             """1. Hot Chicken    | W 9.5 | 치킨 통살과 스파이시 슬로, 핫 스파이시 시즈닝이 토핑된 치킨 버거
@@ -38,9 +40,6 @@ class Chicken : Menu() {
                         println(orderlist.contentToString())
                         pay += chickenorder[chicken + 2].toInt()
                         println("총 가격 ${pay}")
-                        break
-                    } else if (check == 2) {
-                        println("다시 선택해주세요")
                         break
                     } else {
                         println("정확하게 입력해주세요")

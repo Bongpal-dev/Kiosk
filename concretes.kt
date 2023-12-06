@@ -1,6 +1,6 @@
 class Concretes : Menu(){
-    var concretesMenu = 0
-    private var concretes = arrayOf("Shack Attack", "Honey Butter Crunch", "Better 2Gether", "Shack-ffogato", "Shack in the Garden")
+    var concretes = 0
+    private var concretesorder = arrayOf("Shack Attack", "Honey Butter Crunch", "Better 2Gether", "Shack-ffogato", "Shack in the Garden", "6200", "6200", "6200", "6200", "6200")
 
 
     fun ConMenu() {
@@ -12,8 +12,8 @@ class Concretes : Menu(){
 0. 뒤로가기             | 뒤로가기""")
         while (true){
             try{
-                concretesMenu = readLine()!!.toInt()
-                if(concretesMenu !in 0..5){
+                concretes = readLine()!!.toInt()
+                if(concretes !in 0..5){
                     println("다시 입력해주세요")
                     continue
                 }
@@ -25,13 +25,35 @@ class Concretes : Menu(){
                 println("다시 입력하세요")
             }
         }
-        if ( concretesMenu == 0){
+        if ( concretes == 0){
             return menu()
         }
-        else{
-            orderlist = orderlist.plus(concretes[concretesMenu-1])
-            println("주문내역")
-            println(orderlist.contentToString())
+        else {
+            println(
+                """주문내역에 추가하시겠습니까?
+네[1], 아니요[2]
+            """.trimMargin()
+            )
+            while (true) {
+                try {
+                    check = readLine()!!.toInt()
+                    if (check == 1) {
+                        orderlist = orderlist.plus(concretesorder[concretes - 1])
+                        println("주문내역")
+                        println(orderlist.contentToString())
+                        pay += concretesorder[concretes + 4].toInt()
+                        println("총 가격 ${pay}")
+                        break
+                    } else if (check == 2) {
+                        println("다시 선택해주세요")
+                        break
+                    } else {
+                        println("정확하게 입력해주세요")
+                    }
+                } catch (e: Exception) {
+                    println("정확하게 입력해주세요")
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 class Drinks : Menu(){
     var drinks = 0
+    var drinksorder = arrayOf("Lemonade", "Fresh Brewed Iced Tea", "Fifty/Fifty", "Fountain Soda", "Abita Root Beer", "Hot Tea", "4300", "3500", "3800", "2900", "4800", "3400")
 
     fun DrkMenu(){
         println("""1. Lemonade               | W 4.3 | 매장에서 직접 만드는 상큼한 레몬에이드
@@ -27,8 +28,29 @@ class Drinks : Menu(){
         if ( drinks == 0){
             return menu()
         }
-        else{
-            println("정상작동")
+        else {
+            println(
+                """주문내역에 추가하시겠습니까?
+네[1], 아니요[2]
+            """.trimMargin()
+            )
+            while (true) {
+                try {
+                    check = readLine()!!.toInt()
+                    if (check == 1) {
+                        orderlist = orderlist.plus(drinksorder[drinks - 1])
+                        println("주문내역")
+                        println(orderlist.contentToString())
+                        pay += drinksorder[drinks + 5].toInt()
+                        println("총 가격 ${pay}")
+                        break
+                    } else {
+                        println("정확하게 입력해주세요")
+                    }
+                } catch (e: Exception) {
+                    println("정확하게 입력해주세요")
+                }
+            }
         }
     }
 }
