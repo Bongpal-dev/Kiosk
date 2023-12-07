@@ -1,11 +1,11 @@
 package kiosk
 
-import kiosk.DataType.Menu
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import kotlin.NumberFormatException
+import kotlin.concurrent.thread
 
 class OrderMenu {
     var nowCart = mutableListOf<Menu>()
@@ -18,6 +18,12 @@ class OrderMenu {
         // 결제시 총 금액 안내용
         var totalPrice = nowCart.sumOf { it.price }
 
+
+        if (nowCart.isEmpty()) {
+            println("장바구니가 비어있습니다.\n")
+            Thread.sleep(1500L)
+            return
+        }
 
         orderLoop@ while (true) {
             println("==========================================================================================\n")

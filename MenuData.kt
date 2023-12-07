@@ -1,6 +1,5 @@
 package kiosk
 
-import kiosk.DataType.Menu
 
 class MenuData {
     val bugers: List<Menu> = listOf(
@@ -24,8 +23,8 @@ class MenuData {
     )
 
     val concretes: List<Menu> = listOf(
-        Menu("Shack Attack", 62, "초콜릿 커스터드에 퍼지 소스와 초콜릿 토핑이 블렌딩된 쉐이크쉑의 대표 콘크리트"),
-        Menu("Honey Butter Crunch", 62, "바닐라 커스터드에 허니 버터 소스와 슈가 콘이 달콤하게 블렌딩된 콘크리트"),
+        Menu("Shack Attack", 62, "초콜릿 커스터드에 퍼지 소스와 초콜릿 토핑이 블렌딩된 쉐이크쉑의 대표 콘크리트\"),\n" +
+                "        Menu(\"Honey Butter Crunch\", 62, \"바닐라 커스터드에 허니 버터 소스와 슈가 콘이 달콤하게 블렌딩된 콘크리트"),
         Menu("Better 2Gether", 62, "바닐라와 초콜릿을 반씩 넣고 초콜릿 트러플 쿠키 도우와 쇼트브레드를 믹스한 특별한 콘크리트"),
         Menu("Shack-ffogato", 62, "바닐라 커스터드에 커피가 어우러진 쉐이크쉑만의 아포가토 콘크리트"),
         Menu("Shack in the Garden", 62, "바닐라 커스터드에 라즈베리 잼, 쇼트브레드와 말차가 달콤하게 블렌딩된 콘크리트")

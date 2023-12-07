@@ -1,4 +1,4 @@
-package kiosk.DataType
+package kiosk
 data class Menu(
     val name: String,
     val price: Int,

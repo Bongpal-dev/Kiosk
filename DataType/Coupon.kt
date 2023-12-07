@@ -1,6 +1,5 @@
-package kiosk.DataType
+package kiosk
 data class Coupon(
     val name: String,
-    val couponNumber: String,
     val discountRate: Int
 )

@@ -1,6 +1,5 @@
 package kiosk
 
-import kiosk.DataType.Menu
 import java.lang.NumberFormatException
 
 class SelectMenu  {
