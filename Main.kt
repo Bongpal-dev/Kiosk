@@ -5,13 +5,14 @@ import java.lang.NumberFormatException
 
 val orderMenu = OrderMenu()
 var standByOrder = arrayListOf<List<Menu>>()
-var money = 500
+var money = 50000
+val couponMenu = CouponMenu()
+var deliveryOrder = Delivery()
 
 
 fun main() {
     val menuData = MenuData()   // 메뉴 데이터를 가지고 있는 클래스 인스턴스
     val selectMenu = SelectMenu() // 메뉴를 dispaly하고 선택하는 클래스 인스턴스
-    val couponMenu = CouponMenu()
 
     val globalScope = GlobalScope
 
@@ -22,12 +23,18 @@ fun main() {
         }
     }
 
+    globalScope.launch {
+        while (true) {
+            delay(10000L)
+            println("배달의 민족 주문~♪")
+            deliveryOrder.orderDelivery()
+        }
+    }
+
 //    timer(daemon = true, initialDelay = 100L, period = 5000L) {
 //    }
 
     while (true) {               // 메뉴 반복
-
-        var mainMenuSelect: Int
 
         println(
                 """
@@ -44,47 +51,54 @@ fun main() {
        7. Cancel        | 진행중인 주문을 취소합니다.
        8. Coupon        | 할인쿠폰을 확인합니다.
    ==========================================================================================
+       9. Delivery      | 배달내역을 확인합니다.
        0. 종료          | 프로그램 종료
      
         """.trimIndent()
             )
 
-            try {
-                mainMenuSelect = readln().toInt()
-            } catch (e: NumberFormatException) {
-                System.err.println("숫자만 입력해주세요.")
-                Thread.sleep(2000)
-                continue
-            }
+        var mainMenuSelector = intCheck()
 
-            when (mainMenuSelect) {
-                1 -> selectMenu.addOrder(menuData.bugers)
-                2 -> selectMenu.addOrder(menuData.chicken)
-                3 -> selectMenu.addOrder(menuData.custard)
-                4 -> selectMenu.addOrder(menuData.concretes)
-                5 -> selectMenu.addOrder(menuData.drinks)
-                6 -> orderMenu.orderCheck()
-//                7 ->
-                8 -> couponMenu.couponUse()
-                0 -> break
-                else -> System.err.println("메뉴를 선택해주세요.")
-            }
+        when (mainMenuSelector) {
+            1 -> selectMenu.addOrder(menuData.bugers)
+            2 -> selectMenu.addOrder(menuData.chicken)
+            3 -> selectMenu.addOrder(menuData.custard)
+            4 -> selectMenu.addOrder(menuData.concretes)
+            5 -> selectMenu.addOrder(menuData.drinks)
+            6 -> orderMenu.orderCheck()
+            7 -> deliveryOrder.orderDelivery()
+            8 -> couponMenu.couponUse()
+            9 -> deliveryOrder.deliveryCheck()
+            0 -> break
+            else -> System.err.println("메뉴를 선택해주세요.")
         }
-
+    }
     println("프로그램을 종료합니다.")
 }
 
+
+// 가격 변환용 함수
 fun priceConvert (p: Int): String {
-    return "${p / 10}.${p % 10}"
+    var result = StringBuilder(p.toString())
+
+    result.insert(result.lastIndex-2, '.').deleteAt(result.lastIndex)
+
+    if (result.last() == '0') result.deleteAt(result.lastIndex)
+
+
+//    if (result.last() == '0') result = result.removeSuffix("0")
+
+    return result.toString()
+
 }
 
+// 숫자입력이 안되면 반복하는 함수
 fun intCheck (): Int {
     while (true) {
         try {
-            return readln().toInt()
+            return readln()!!.toInt()
         } catch (e: NumberFormatException) {
             System.err.println("숫자만 입력해주세요.")
-            Thread.sleep(2000)
             continue
         }
     }
