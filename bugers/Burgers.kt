@@ -2,12 +2,6 @@ package bugers
 
 import Menu
 
-//interface Bugers {
-//    val name: String
-//    val price: Double
-//    fun descriptionMenu()
-//}
-
 open class Burgers(): Menu() {
 
     override val name = "Burger"
