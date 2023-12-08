@@ -10,7 +10,6 @@ fun main() {
     while (true) {
         menu.menu()
         var list = menu.menuNumber
-        println(list)
 
         if (list == 1) {
             bugers.BugMenu()
