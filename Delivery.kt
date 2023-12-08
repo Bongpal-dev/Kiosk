@@ -5,49 +5,41 @@ import kotlin.random.Random
 
 class Delivery {
 
-    var nowDelivery = arrayListOf<DeliveryOrder>()
     fun orderDelivery(){
-        val menu = MenuData()
-        var deliveryMenu = mutableListOf<Menu>()
-        var allMenu = mutableListOf<Menu>()
-
-        menu.bugers.forEach { allMenu += it }
-        menu.chicken.forEach { allMenu += it }
-        menu.concretes.forEach { allMenu += it }
-        menu.custard.forEach { allMenu += it }
-        menu.drinks.forEach { allMenu += it }
-
-        var menuSize = Random.nextInt(5)
-
-        for (i in 0 .. menuSize) {
-            deliveryMenu += allMenu[Random.nextInt(allMenu.size)]
-        }
-
+        val menus = Menus()
+        var deliveryOrders = arrayListOf<MenuItem>()
         var orderMenuNames = arrayListOf<String>()
         var orderPrice = 0
-        deliveryMenu.forEach { orderMenuNames += it.name }
-        deliveryMenu.forEach { orderPrice += it.price }
+        var Latitude = Random.nextDouble(35.208170, 35.219541)
+        var Longitude = Random.nextDouble(129.019343, 129.037572)
 
-        var randomLatitude = Random.nextDouble(35.208170, 35.219541)
-        var randomLongitude = Random.nextDouble(129.019343, 129.037572)
-
-        nowDelivery += DeliveryOrder(orderPrice, orderMenuNames, randomLatitude, randomLongitude)
-
+        for (i in 0 .. Random.nextInt(5)) {
+            val tempMenu = menus.menuItems[Random.nextInt(menus.menuItems.size)]
+            deliveryOrders += tempMenu[Random.nextInt(tempMenu.size)]
+        }
+        deliveryOrders.forEach { orderMenuNames += it.name }
+        deliveryOrders.forEach { orderPrice += it.price }
+        deliveryOrder += DeliveryOrder(orderPrice, orderMenuNames, Latitude, Longitude)
     }
 
     fun deliveryCheck () {
+        if (deliveryOrder.isEmpty()) {
+            println("주문내역이 없습니다.")
+            Thread.sleep(1500L)
+            return
+        }
+
         while (true) {
             println("================================================  Delivery Order  ================================================\n")
-            for (h in 0 .. nowDelivery.lastIndex) {
-                println("   ${h+1}. 결제금액 : ￦ ${priceConvert(nowDelivery[h].price)}  |   GPS : ${nowDelivery[h].latitude}, ${nowDelivery[h].longitude}  |  주문메뉴 : ${nowDelivery[h].menus.joinToString()}")
+
+            for (h in 0 .. deliveryOrder.lastIndex) {
+                println("${h+1}. 결제금액 : ${priceConverter(deliveryOrder[h].price)}   주문메뉴 : ${deliveryOrder[h].menus.joinToString()}")
+                println("   [GPS : ${deliveryOrder[h].latitude}, ${deliveryOrder[h].longitude}]")
             }
             println("\n==================================================================================================================\n")
-            println(" 아무 숫자나 입력하면 메인메뉴로 돌아갑니다.\n")
-
-            intCheck()
-
+            println(" 아무 키나 입력하면 메인메뉴로 돌아갑니다.\n")
+            readln()
             break
-
         }
     }
 
