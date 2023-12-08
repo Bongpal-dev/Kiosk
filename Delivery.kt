@@ -42,5 +42,4 @@ class Delivery {
             break
         }
     }
-
 }

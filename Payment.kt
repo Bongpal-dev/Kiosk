@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter
 
 class Payment() {
     val bankCheckTime = LocalTime.of(22, 0) .. LocalTime.of(22, 20)
+
     fun pay(){
         while (true) {
             if (LocalTime.now() in bankCheckTime) {
@@ -14,7 +15,7 @@ class Payment() {
             }
 
             if (coupons.isNotEmpty()) {
-                val couponUseStatus = UseCoupon().couponUseCheck()
+                UseCoupon().couponUseCheck()
             }
 
             if (paymentAmount > money) {
