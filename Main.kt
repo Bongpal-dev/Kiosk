@@ -15,7 +15,6 @@ var money = 50000
 fun main() {
     backgroundWork()
     mainMenu()
-    println("프로그램을 종료합니다.")
 }
 
 fun mainMenu() {
@@ -37,6 +36,7 @@ fun mainMenu() {
             }
         }
     }
+    println("프로그램을 종료합니다.")
 }
 
 fun mainMenuDetails(index: Int) {
