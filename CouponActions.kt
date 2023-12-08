@@ -1,12 +1,14 @@
 package kiosk
 
+import kotlin.random.Random
+
 class CouponActions {
 
     fun actions() {
         while (true) {
-            strings.messages[2].forEach { println(it) }
+            messages[2].forEach { println(it) }
 
-            var actionIndex = immutableIndexCheck(2)
+            var actionIndex = indexCheck { messages[2].forEach { println(it) } }
 
             when (actionIndex) {
                 1 -> couponsDetails()
@@ -26,7 +28,7 @@ class CouponActions {
         while (true) {
             printCoupons()
 
-            var couponIndex = mutableIndexCheck { printCoupons() }
+            var couponIndex = indexCheck { printCoupons() }
 
             if (couponIndex == 0) {
                 break
@@ -41,8 +43,9 @@ class CouponActions {
             listOf(30, 30000),
             listOf(50, 50000)
         )
-        val discountRate = randomCoupon.random()[0]
-        val minimumAmount = randomCoupon.random()[1]
+        val randomDiscountRate = Random.nextInt(2)
+        val discountRate = randomCoupon[randomDiscountRate][0]
+        val minimumAmount = randomCoupon[randomDiscountRate][1]
 
         println("${discountRate}% 할인쿠폰이 발급됐습니다.")
         coupons += Coupons("${discountRate}% 할인쿠폰", discountRate, minimumAmount)

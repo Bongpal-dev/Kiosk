@@ -4,7 +4,7 @@ import kiosk.DataType.DeliveryOrder
 import java.lang.NumberFormatException
 import kotlinx.coroutines.*
 
-val strings = Strings()
+val messages = Strings().messages
 var shoppingCart = arrayListOf<MenuItem>()
 var coupons = arrayListOf<Coupons>()
 var orders = arrayListOf<ArrayList<MenuItem>>()
@@ -19,9 +19,9 @@ fun main() {
 
 fun mainMenu() {
     while (true) {
-        strings.messages[0].forEach { println(it) }
+        messages[0].forEach { println(it) }
 
-        var mainMenuIndex = immutableIndexCheck(0)
+        var mainMenuIndex = indexCheck { messages[0].forEach { println(it) } }
 
         when (mainMenuIndex) {
             0 -> {
@@ -90,19 +90,7 @@ fun priceConverter (p: Int): String {
     return "￦ ${result.toString()}"
 }
 
-fun immutableIndexCheck(sIndex: Int): Int {
-    while (true) {
-        try {
-            return readln().toInt()
-        } catch (e: NumberFormatException) {
-            System.err.println("숫자만 입력해주세요.")
-            strings.messages[sIndex].forEach { println(it) }
-            continue
-        }
-    }
-}
-
-fun mutableIndexCheck(action: () -> Unit): Int {
+fun indexCheck(action: () -> Unit): Int {
     while (true) {
         try {
             return readln().toInt()
