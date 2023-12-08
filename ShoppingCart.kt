@@ -15,7 +15,7 @@ class ShoppingCart {
         while (true) {
             printShoppingCartDetails()
 
-            val shoppingCartIndex = mutableIndexCheck { printShoppingCartDetails() }
+            val shoppingCartIndex = indexCheck { printShoppingCartDetails() }
 
             when (shoppingCartIndex) {
                 0 -> return
@@ -48,9 +48,9 @@ class ShoppingCart {
 
     fun resetCart(): Boolean {
         while (true) {
-            strings.messages[1].forEach { println(it) }
+            messages[1].forEach { println(it) }
 
-            val shoppingCartResetCheck = immutableIndexCheck(1)
+            val shoppingCartResetCheck = indexCheck { messages[1].forEach { println(it) } }
 
             if (shoppingCartResetCheck == 2) {
                 return true

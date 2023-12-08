@@ -3,9 +3,9 @@ class UseCoupon () {
     var discountPrice = 0
     fun couponUseCheck(): Boolean {
         while (true) {
-            strings.messages[3].forEach { println(it) }
+            messages[3].forEach { println(it) }
 
-            var couponUseCheck = immutableIndexCheck(3)
+            var couponUseCheck = indexCheck { messages[3].forEach { println(it) } }
 
             when (couponUseCheck) {
                 1-> {
@@ -28,7 +28,7 @@ class UseCoupon () {
         whichCoupon@ while (true) {
             printCoupons()
 
-            var useCouponIndex = mutableIndexCheck { printCoupons() }
+            var useCouponIndex = indexCheck { printCoupons() }
 
             when (useCouponIndex) {
                 0 -> return true
@@ -49,7 +49,7 @@ class UseCoupon () {
             while (true) {
                 printDiscountResult(selectedCoupon)
 
-                var paymentWithCoupon = mutableIndexCheck { printDiscountResult(selectedCoupon) }
+                var paymentWithCoupon = indexCheck { printDiscountResult(selectedCoupon) }
 
                 if (paymentWithCoupon == 2) {
                     continue@whichCoupon

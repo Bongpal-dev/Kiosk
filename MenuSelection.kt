@@ -8,7 +8,7 @@ class MenuSelection  {
         while (true) {
             printMenus(menuList)
 
-            val menuIndex = mutableIndexCheck { printMenus(menuList) }
+            val menuIndex = indexCheck { printMenus(menuList) }
 
             if (menuIndex !in 0 .. menuList.lastIndex + 1) {
                 noExistNumber()
@@ -21,7 +21,7 @@ class MenuSelection  {
 
             printSeletMenu(menuList[menuIndex-1])
 
-            val selectCheck = mutableIndexCheck { printSeletMenu(menuList[menuIndex-1]) }
+            val selectCheck = indexCheck { printSeletMenu(menuList[menuIndex-1]) }
 
             if (selectCheck == 2) {
                 continue
